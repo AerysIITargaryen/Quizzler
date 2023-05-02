@@ -14,6 +14,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var progressBar: UIProgressView!
     @IBOutlet weak var trueButton: UIButton!
     @IBOutlet weak var falseButton: UIButton!
+    @IBOutlet weak var thirdButton: UIButton!
     
     var quizBrain = QuizBrain()
     
@@ -24,6 +25,7 @@ class ViewController: UIViewController {
         
         trueButton.layer.cornerRadius = 20
         falseButton.layer.cornerRadius = 20
+        thirdButton.layer.cornerRadius = 20
         
         updateUI()
         
@@ -53,11 +55,19 @@ class ViewController: UIViewController {
     
     func updateUI() {
         
+        let answerTitles = quizBrain.getAnswers()
+        
+        trueButton.setTitle(answerTitles[0], for: .normal)
+        falseButton.setTitle(answerTitles[1], for: .normal)
+        thirdButton.setTitle(answerTitles[2], for: .normal)
+        
+        
         questionLabel.text = quizBrain.getQuestionText()
         progressBar.progress = quizBrain.getProgress()
         scoreLabel.text = "Score: \(quizBrain.getScore())"
         trueButton.backgroundColor = .clear
         falseButton.backgroundColor = .clear
+        thirdButton.backgroundColor = .clear
         
         
     }
